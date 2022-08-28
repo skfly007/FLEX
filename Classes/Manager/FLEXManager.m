@@ -14,6 +14,8 @@
 #import "FLEXObjectExplorerFactory.h"
 #import "FLEXFileBrowserController.h"
 
+#import "FLEXNetworkObserver.h"
+
 @interface FLEXManager () <FLEXWindowEventDelegate, FLEXExplorerViewControllerDelegate>
 
 @property (nonatomic, readonly, getter=isHidden) BOOL hidden;
@@ -32,6 +34,7 @@
     static FLEXManager *sharedManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+        FLEXNetworkObserver.enabled=YES;
         sharedManager = [self new];
     });
     return sharedManager;
